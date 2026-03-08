@@ -1,8 +1,8 @@
 # Copyright (c) 2026 David Kiessling
 # Licensed under the BSD-2 license. See LICENSE file in the project directory for details.
 
-from acados_template import AcadosOcp, AcadosOcpSolver, ACADOS_INFTY, latexify_plot, AcadosOcpOptions
-from sweet_ocp.models.cart_pendulum_models import export_free_time_pendulum_ode_model
+from acados_template import AcadosOcp, ACADOS_INFTY, AcadosOcpOptions
+from sweet_ocp.models.cart_pendulum_models import export_free_time_cart_pendulum_ode_model
 import numpy as np
 from dataclasses import dataclass
 from matplotlib import pyplot as plt
@@ -37,7 +37,7 @@ def create_problem(opts : AcadosOcpOptions):
     ocp = AcadosOcp()
 
     # set model
-    model = export_free_time_pendulum_ode_model()
+    model = export_free_time_cart_pendulum_ode_model()
     ocp.model = model
 
     ###########################################################################
@@ -90,10 +90,6 @@ def create_initial_guess():
     return init_X, init_U
 
 def plot_trajectory(sol_X : np.array, sol_U: np.array):
-    """"
-    Inspired by 
-    
-    """"
     params = PendulumParmeters()
     T_final = sol_X[0, 0]
     fps = int(params.N/T_final)
