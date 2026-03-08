@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sweet_ocp"
+version = "0.1.0"
+authors = [{ name = "David Kiessling"}]
+description = "A test suite of direct optimal control problems "
+readme = "README.md"
+license = { text = "BSD-2" }
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["."]
