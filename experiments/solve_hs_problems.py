@@ -6,7 +6,7 @@ import numpy as np
 import os
 import importlib
 from opts import create_acados_options
-from acados_test_problems.utils.standard_nlp_util import create_standard_nlp_from_casadi_expression
+from sweet_ocp.utils.standard_nlp_util import create_standard_nlp_from_casadi_expression
 
 # file names
 def create_file_names():
@@ -39,7 +39,7 @@ def solve_problem(file_name, opts):
     os.system(f"rm -f {dir_path}/acados_ocp.json")
     os.system(f"rm -rf {dir_path}/c_generated_code")
 
-    prob = importlib.import_module(f'acados_test_problems.standard_nlps.hock_schittkowski.{file_name}', package='acados_test_problems')
+    prob = importlib.import_module(f'sweet_ocp.standard_nlps.hock_schittkowski.{file_name}', package='sweet_ocp')
     hock_schittkowsky_func = getattr(prob, file_name)
     (x_opt, f_opt, x, f, g, lbg, ubg, lbx, ubx, x0) = hock_schittkowsky_func()
 

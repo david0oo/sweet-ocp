@@ -1,10 +1,10 @@
 # Copyright (c) 2026 David Kiessling
 # Licensed under the BSD-2 license. See LICENSE file in the project directory for details.
 
-# import acados_test_problems.standard_nlps.inconsistent_qp_linearization as polynomial
-# import acados_test_problems.standard_nlps.globalized_convex_problem as polynomial
-# import acados_test_problems.standard_nlps.fourth_order_polynomial as polynomial
-import acados_test_problems.standard_nlps.maratos_test_problem as polynomial
+# import sweet_ocp.standard_nlps.inconsistent_qp_linearization as polynomial
+# import sweet_ocp.standard_nlps.globalized_convex_problem as polynomial
+# import sweet_ocp.standard_nlps.fourth_order_polynomial as polynomial
+import sweet_ocp.standard_nlps.maratos_test_problem as polynomial
 from opts import create_acados_options
 from acados_template import AcadosOcp, AcadosOcpSolver, AcadosCasadiOcpSolver
 

@@ -3,7 +3,7 @@
 
 from acados_template import AcadosOcp, AcadosOcpSolver, ACADOS_INFTY, AcadosOcpOptions
 from dataclasses import dataclass
-from acados_test_problems.models.double_pendulum_models import export_fixed_time_double_pendulum_model, export_free_time_double_pendulum_model
+from sweet_ocp.models.double_pendulum_models import export_fixed_time_double_pendulum_model, export_free_time_double_pendulum_model
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.patches import Circle

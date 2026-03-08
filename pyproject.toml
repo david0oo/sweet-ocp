@@ -9,7 +9,12 @@ authors = [{ name = "David Kiessling"}]
 description = "A test suite of direct optimal control problems "
 readme = "README.md"
 license = { text = "BSD-2" }
-dependencies = []
+dependencies = [
+    "numpy",
+    "matplotlib",
+    "pandas",
+    "casadi"
+]
 
 [tool.setuptools.packages.find]
 where = ["."]

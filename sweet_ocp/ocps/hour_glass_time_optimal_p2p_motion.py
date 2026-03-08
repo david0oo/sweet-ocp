@@ -2,7 +2,7 @@
 # Licensed under the BSD-2 license. See LICENSE file in the project directory for details.
 
 from acados_template import AcadosOcp, AcadosOcpSolver, ACADOS_INFTY, AcadosOcpOptions
-from acados_test_problems.models.bicycle_models import export_free_time_simple_bicycle
+from sweet_ocp.models.bicycle_models import export_free_time_simple_bicycle
 from dataclasses import dataclass
 import numpy as np
 from matplotlib import pyplot as plt

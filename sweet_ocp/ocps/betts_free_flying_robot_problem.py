@@ -3,7 +3,7 @@
 
 from acados_template import AcadosOcp, AcadosOcpSolver, AcadosModel, ACADOS_INFTY, AcadosOcpOptions
 from dataclasses import dataclass
-from acados_test_problems.models.free_flying_robot_model import export_free_flying_robot_model
+from sweet_ocp.models.free_flying_robot_model import export_free_flying_robot_model
 import numpy as np
 from matplotlib import pyplot as plt
 import casadi as cs

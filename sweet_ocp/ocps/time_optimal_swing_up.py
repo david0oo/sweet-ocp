@@ -2,13 +2,13 @@
 # Licensed under the BSD-2 license. See LICENSE file in the project directory for details.
 
 from acados_template import AcadosOcp, AcadosOcpSolver, ACADOS_INFTY, latexify_plot, AcadosOcpOptions
-from acados_test_problems.models.cart_pendulum_models import export_free_time_pendulum_ode_model
+from sweet_ocp.models.cart_pendulum_models import export_free_time_pendulum_ode_model
 import numpy as np
 from dataclasses import dataclass
 from matplotlib import pyplot as plt
 from matplotlib.animation import FuncAnimation
 from matplotlib.animation import PillowWriter
-from acados_test_problems.visualization.cart_pendulum_visualization import CartPendulumVisualization, VisualizationFunctor
+from sweet_ocp.visualization.cart_pendulum_visualization import CartPendulumVisualization, VisualizationFunctor
 
 @dataclass
 class PendulumParmeters:

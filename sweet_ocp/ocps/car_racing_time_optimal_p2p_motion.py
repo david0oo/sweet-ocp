@@ -3,7 +3,7 @@
 
 from acados_template import AcadosOcp, AcadosOcpSolver, ACADOS_INFTY, AcadosOcpOptions
 from dataclasses import dataclass
-from acados_test_problems.models.bicycle_models import export_free_time_bicycle
+from sweet_ocp.models.bicycle_models import export_free_time_bicycle
 import numpy as np
 from matplotlib import pyplot as plt
 

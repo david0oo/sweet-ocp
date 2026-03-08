@@ -3,7 +3,7 @@
 
 from acados_template import AcadosOcp, AcadosOcpSolver, AcadosModel, ACADOS_INFTY, AcadosOcpOptions
 from dataclasses import dataclass
-from acados_test_problems.models.overhead_crane_models import export_fixed_time_crane_model, get_payload_position
+from sweet_ocp.models.overhead_crane_models import export_fixed_time_crane_model, get_payload_position
 import numpy as np
 from matplotlib import pyplot as plt
 import casadi as cs

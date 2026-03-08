@@ -13,8 +13,8 @@ Install acados and its python interface like here.
 
 Clone the repository and navigate to the root directory of the repository
 ```
-git clone git@github.com:david0oo/acados_test_problems.git
-cd acados_test_problems
+git clone git@github.com:david0oo/sweet_ocp.git
+cd sweet_ocp
 ```
 Install the python package
 ```
@@ -33,12 +33,12 @@ Please have a look into the Jupyter notebook
 If you have an interesting OCP that you would like to add to the test collection. Please follow the following steps
 1. Assume your system is called `abcd`. If your system model is not available yet, please add a file `abcd_models.py` in the folder 
     ```
-    acados_test_problems/models
+    sweet_ocp/models
     ```
     and a function that is called `export_abcd_model` for a fixed-time model or `export_free_time_abcd_model` for a free-time model
 2. Add your OCP in the folder 
     ```
-    acados_test_problems/ocps
+    sweet_ocp/ocps
     ```
     Please ensure that the `AcadosOcp` is built in a function `create_problem(opts: AcadosOptions)`.
     An initial guess should be available in a function `create_initial_guess()`. A  function for plotting trajectories should be available in `plot_trajectory(sol_X: np.array, sol_U: np.array)`.
@@ -50,8 +50,8 @@ If you find this project useful, please consider giving it a ⭐ or citing it if
   author = {Kiessling, David},
   license = {BSD-2},
   title = {sweet-OCP: A test suite of direct optimal control problems},
-  url = {https://github.com/david0oo/acados_test_problems},
-  version = {0.1.1},
+  url = {https://github.com/david0oo/sweet_ocp},
+  version = {0.1.},
   year = {2026}
 }
 ```
