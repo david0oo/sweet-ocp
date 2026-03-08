@@ -1,4 +1,4 @@
-# sweet-OCP: A test suite of direct optimal control problems
+# sweet-OCP: A test suite of direct optimal control problems🍬
 
 A collection of Optimal Control Problems (OCPs) that are implemented in Python using the `acados` API. The test problems can be exported to Casadi expressions using the `AcadosCasadiSolver`.
 The problems are discretized using multiple shooting.
