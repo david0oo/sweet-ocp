@@ -12,16 +12,16 @@ def create_acados_options(globalization='funnel'):
 
     # with scaling we can also solve for higher accuracy
     # opts.hpipm_mode = 'ROBUST'
-    opts.qp_solver_tol_comp = 1e-7
-    opts.qp_solver_tol_stat = 1e-7
-    opts.qp_solver_tol_eq = 1e-7
-    opts.qp_solver_tol_ineq = 1e-7
+    # opts.qp_solver_tol_comp = 1e-7
+    # opts.qp_solver_tol_stat = 1e-7
+    # opts.qp_solver_tol_eq = 1e-7
+    # opts.qp_solver_tol_ineq = 1e-7
     opts.qp_solver_mu0 = 1e3 # bad option!!!
     # opts.qp_solver_t0_init = 0
     opts.hessian_approx = 'EXACT'
     opts.regularize_method = 'MIRROR'
     opts.reg_epsilon = 1e-6
-    opts.byrd_omojokon_slack_relaxation_factor = 1.0+1e-2
+    # opts.byrd_omojokon_slack_relaxation_factor = 1.0+1e-2
     # opts.qp_solver_ric_alg = 0
 
     opts.nlp_solver_max_iter = 600
