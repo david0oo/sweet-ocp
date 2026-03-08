@@ -49,8 +49,7 @@ If you find this project useful, please consider giving it a ⭐ or citing it if
 @software{Kiessling2026,
   author = {Kiessling, David},
   license = {BSD-2},
-  month = jan,
-  title = {tba},
+  title = {sweet-OCP: A test suite of direct optimal control problems},
   url = {https://github.com/david0oo/acados_test_problems},
   version = {0.1.1},
   year = {2026}
