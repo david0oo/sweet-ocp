@@ -1,7 +1,7 @@
 # Copyright (c) 2026 David Kiessling
 # Licensed under the BSD-2 license. See LICENSE file in the project directory for details.
 
-from acados_template import AcadosOcp, AcadosOcpSolver, AcadosOcpOptions, AcadosModel, ACADOS_INFTY
+from acados_template import AcadosOcpSolver
 import numpy as np
 import os
 import importlib
@@ -11,7 +11,6 @@ from sweet_ocp.utils.standard_nlp_util import create_standard_nlp_from_casadi_ex
 # file names
 def create_file_names():
     file_names = []
-    # for i in range(1, 120):
     for i in range(12, 120):
         if i < 10:
             file_name = "hs00" + str(i)
