@@ -45,7 +45,7 @@ def solve_problem(file_name, opts):
     N = 0
     # create ocp object to formulate the OCP
     ocp = create_standard_nlp_from_casadi_expression(file_name, x, f, g, lbg, ubg, lbx, ubx, opts, N)
-    ocp_solver = AcadosOcpSolver(ocp, verbose=False)
+    ocp_solver = AcadosOcpSolver(ocp, verbose=False, generate=False)
     # initialize solver
     xinit = np.array(x0).squeeze()
     for i in range(N+1):

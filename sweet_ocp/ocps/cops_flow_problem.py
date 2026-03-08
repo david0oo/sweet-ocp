@@ -105,6 +105,7 @@ def create_initial_guess(reynolds_numer : float = 0.0):
     This function creates an initial guess for the flow problem.
     Choose the reynolds_number from [0, 10, 100, 1000]
     """
+    params = FlowModelParameters()
     init_X = np.zeros((params.N+1, params.nx))
     init_P = np.zeros((params.N+1, 1))
 
