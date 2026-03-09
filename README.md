@@ -22,7 +22,7 @@ pip install -e .
 ```
 Test if it was installed correctly by executing the following file:
 ```
-python tba
+python examples/solving_standard_nlp_in_acados.py
 ```
 
 ## Usage 
