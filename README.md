@@ -26,8 +26,7 @@ python tba
 ```
 
 ## Usage 
-Please have a look into the Jupyter notebook
-`look_here` for a detailed description.
+Please have a look into the examples folder.
 
 ## Contributing
 If you have an interesting OCP that you would like to add to the test collection. Please follow the following steps
