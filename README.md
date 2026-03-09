@@ -9,7 +9,7 @@ Set up and activate a fresh Python virtual environment (required Python >= 3.8)
 python -m venv env
 source env/bin/activate
 ```
-Install acados and its python interface like here.
+Install acados and its python interface as described [here](https://docs.acados.org/python_interface/index.html).
 
 Clone the repository and navigate to the root directory of the repository
 ```
