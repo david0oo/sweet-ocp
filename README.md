@@ -9,7 +9,7 @@ Set up and activate a fresh Python virtual environment (required Python >= 3.8)
 python -m venv env
 source env/bin/activate
 ```
-Install acados and its python interface like here.
+Install acados and its python interface as described [here](https://docs.acados.org/python_interface/index.html).
 
 Clone the repository and navigate to the root directory of the repository
 ```
@@ -22,12 +22,11 @@ pip install -e .
 ```
 Test if it was installed correctly by executing the following file:
 ```
-python tba
+python examples/solving_standard_nlp_in_acados.py
 ```
 
 ## Usage 
-Please have a look into the Jupyter notebook
-`look_here` for a detailed description.
+Please have a look into the examples folder.
 
 ## Contributing
 If you have an interesting OCP that you would like to add to the test collection. Please follow the following steps
