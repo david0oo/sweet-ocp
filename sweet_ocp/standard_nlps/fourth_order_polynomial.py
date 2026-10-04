@@ -7,7 +7,7 @@ import casadi as cs
 from matplotlib import pyplot as plt
 # A simple fourth order polynomial
 #
-# min -0.5*x^2 + x^4
+# min 0.5*x^2 - x^4
 #
 # s.t. -10 <= x <= 10
 
@@ -38,8 +38,7 @@ def create_problem(opts: AcadosOcpOptions):
 
     ocp.solver_options = opts
     # discretization
-    N = 0
-    ocp.solver_options.N_horizon = N
+    ocp.solver_options.N_horizon = 0
 
     return ocp
 

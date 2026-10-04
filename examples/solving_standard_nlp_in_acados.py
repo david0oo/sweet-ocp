@@ -2,25 +2,24 @@
 # Licensed under the BSD-2 license. See LICENSE file in the project directory for details.
 
 import sweet_ocp.standard_nlps.fourth_order_polynomial as polynomial
-from opts import create_acados_options
-from acados_template import AcadosOcp, AcadosOcpSolver
+
+from acados_template import AcadosCasadiOcpSolver, AcadosOcpSolver
+
+try:
+    from .opts import create_acados_options
+except ImportError:  # pragma: no cover - allows running the example as a script
+    from opts import create_acados_options
+
 
 def solve_nlp():
-    opts = create_acados_options()
-    ocp : AcadosOcp = polynomial.create_problem(opts=opts)
-    acados_solver = AcadosOcpSolver(ocp, verbose = False)
-    init_X, _ = polynomial.create_initial_guess()
+    ocp = polynomial.create_problem(opts=create_acados_options())
+    # solver = AcadosCasadiOcpSolver(ocp, solver="ipopt")
+    solver = AcadosOcpSolver(ocp)
+    initial_x, _ = polynomial.create_initial_guess()
+    solver.set(0, "x", initial_x)
 
-    # Initialize at initial guess
-    N = ocp.solver_options.N_horizon
-    acados_solver.set(0, "x", init_X)
-
-    # Solve the problem with acados
-    _ = acados_solver.solve()
-
-    # Extract Solution
-    acados_sol = acados_solver.get(0, "x")
-    print(acados_sol)
+    solver.solve()
+    print(solver.get(0, "x"))
 
 if __name__ == "__main__":
     solve_nlp()
