@@ -1,6 +1,7 @@
 # Copyright (c) 2026 David Kiessling
 # Licensed under the BSD-2 license. See LICENSE file in the project directory for details.
 
+import casadi as cs
 
 
 def hs098():
