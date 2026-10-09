@@ -127,6 +127,10 @@ def create_problem(opts : AcadosOcpOptions):
     ocp.constraints.ubu = np.array([params.c_max])
     ocp.constraints.idxbu = np.array([0])
 
+    # Path constraints on states
+    ocp.constraints.lbx = np.array([0.0, 0.0])
+    ocp.constraints.ubx = np.array([ACADOS_INFTY, ACADOS_INFTY])
+    ocp.constraints.idxbx = np.array([1, 3])
 
     # Terminal constraints
     ocp.constraints.lbx_e = np.append([0.0], params.terminal_state[1:4])
