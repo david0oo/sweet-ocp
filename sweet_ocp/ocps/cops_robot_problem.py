@@ -132,7 +132,7 @@ def create_initial_guess():
     init_U = np.zeros((params.N, params.nu))
 
     # Initial guess
-    T0 = 1.0
+    T0 = params.T0
 
     ts = np.linspace(0, T0, params.N+1)
     theta_init = (2*np.pi)/3 * (ts/T0)**2
