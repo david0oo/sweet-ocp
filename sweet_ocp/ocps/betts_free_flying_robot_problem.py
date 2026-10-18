@@ -98,7 +98,7 @@ def create_initial_guess():
         init_X[i,:] = lin_distr[i]
         init_U[i,:] = np.zeros(params.nu)
     init_X[params.N,:] = lin_distr[params.N]
-    return init_X, init_U
+    return init_X, init_U, None
 
 def plot_trajectory(sol_X, sol_U):
     params = FreeFlyingRobotProblemParameters()

@@ -16,11 +16,11 @@ def solve_problem(file_name, opts):
         os.chdir(tmp_dir)
         try:
             ocp: AcadosOcp = prob.create_problem(opts=opts)
-            init_X, init_U = prob.create_initial_guess()
+            init_X, init_U, init_P = prob.create_initial_guess()
             ocp_solver = AcadosOcpSolver(ocp, verbose=False, generate=False)
 
             horizon = ocp.solver_options.N_horizon
-            set_initial_guess(horizon, init_X, init_U, ocp_solver)
+            set_initial_guess(horizon, ocp_solver, init_X, init_U, init_P)
             status = ocp_solver.solve()
             extract_solution(
                 horizon,

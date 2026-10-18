@@ -141,7 +141,7 @@ def create_initial_guess():
         init_X[i,:] = np.array([params.T0, 1.0, vs[i], ms[i]])
         init_U[i,:] = np.array([params.thrust_max/2])
     init_X[params.N,:] = np.array([params.T0, 1.0, vs[params.N-1], ms[params.N-1]])
-    return init_X, init_U
+    return init_X, init_U, None
 
 def plot_trajectory(sol_X: np.array, sol_U: np.array):
     """

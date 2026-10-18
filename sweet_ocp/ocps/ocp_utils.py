@@ -7,16 +7,31 @@ from acados_template import AcadosOcpSolver, AcadosCasadiOcpSolver
 
 # Helper functions
 def set_initial_guess(N: int,
+                      solver: Union[AcadosOcpSolver, AcadosCasadiOcpSolver],
                       init_X: np.array,
                       init_U: np.array,
-                      solver: Union[AcadosOcpSolver, AcadosCasadiOcpSolver]):
+                      init_P: np.array = None):
+    assert init_X.shape[1] > 0, "State dimension must be greater 0!"
+    assert init_X.shape[0] == N+1, f"State initial guess should have N+1 time steps, got {init_X.shape[0]}"
     if N > 0:
         for i in range(N):
             solver.set(i, "x", init_X[i, :])
-            solver.set(i, "u", init_U[i, :])
         solver.set(N, "x", init_X[N, :])
+
+        if init_U.shape[1] > 0:
+            assert init_U.shape[0] == N, "Control initial guess should have N+1 time steps!"
+            for i in range(N):
+                solver.set(i, "u", init_U[i, :])
+
+        if init_P is not None:
+            assert init_P.shape[0] == N+1, "Parameter initialization should have N+1 time steps!"
+            for i in range(N):
+                solver.set(i, "p", init_P[i, :])
+            solver.set(N, "p", init_P[0, :])
     else:
         solver.set(0, "x", init_X[0, :])
+        if init_P is not None:
+            solver.set(0, "p", init_P[0, :])
 
 def extract_solution(N: int,
                      nx: int,
@@ -29,11 +44,13 @@ def extract_solution(N: int,
     if N > 0:
         for i in range(N):
             sol_X[i,:] = solver.get(i, "x")
-            sol_U[i,:] = solver.get(i, "u")
         sol_X[N,:] = solver.get(N, "x")
+
+        if nu > 0:
+            for i in range(N):
+                sol_U[i,:] = solver.get(i, "u")
     else:
         sol_X[0,:] = solver.get(0, "x")
-        sol_U = []
 
     return sol_X, sol_U
 

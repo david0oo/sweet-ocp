@@ -144,7 +144,7 @@ def create_initial_guess(variant=0):
         for i in range(1, params.N):
             init_X[i,:] = np.array([1.0, x[i], 0.0, 0.0, 0.0, 0.0])
         init_X[params.N,:] = params.desired_state
-    return init_X, init_U
+    return init_X, init_U, None
 
 def plot_trajectory(sol_X: np.array, sol_U: np.array):
     """

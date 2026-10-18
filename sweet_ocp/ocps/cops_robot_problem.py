@@ -140,7 +140,7 @@ def create_initial_guess():
     for i in range(params.N):
         init_X[i,:] = np.array([T0, 4.5, theta_init[i], np.pi/4, 0.0, 0.0, 0.0])
     init_X[params.N,:] = np.array([T0, 4.5, theta_init[params.N], np.pi/4, 0.0, 0.0, 0.0])
-    return init_X, init_U
+    return init_X, init_U, None
 
 def plot_trajectory(sol_X: np.array, sol_U: np.array):
     """

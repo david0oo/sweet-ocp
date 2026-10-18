@@ -3,7 +3,8 @@
 
 import tempfile
 
-import sweet_ocp.ocps.altro_dubins_car_obstacle as tocp_cart_pendulum
+# import sweet_ocp.ocps.altro_dubins_car_obstacle as tocp_cart_pendulum
+import sweet_ocp.ocps.cops_flow_problem as tocp_cart_pendulum
 from sweet_ocp.ocps.ocp_utils import set_initial_guess, extract_solution
 from acados_template import AcadosOcpSolver, AcadosCasadiOcpSolver
 
@@ -16,11 +17,11 @@ except ImportError:  # pragma: no cover - allows running the example as a script
 def solve_ocp(use_acados: bool = True, casadi_solver_str: str = "ipopt"):
     opts = create_acados_options()
     ocp = tocp_cart_pendulum.create_problem(opts=opts)
-    init_x, init_u = tocp_cart_pendulum.create_initial_guess()
+    init_x, init_u, init_p = tocp_cart_pendulum.create_initial_guess()
 
     horizon = ocp.solver_options.N_horizon
     state_dim = ocp.model.x.shape[0]
-    control_dim = ocp.model.u.shape[0]
+    control_dim = len(ocp.model.u) if isinstance(ocp.model.u, list) else ocp.model.u.shape[0]
 
     with tempfile.TemporaryDirectory(prefix="sweet_ocp_") as codegen_dir:
         ocp.code_gen_options.code_export_directory = codegen_dir
@@ -34,7 +35,7 @@ def solve_ocp(use_acados: bool = True, casadi_solver_str: str = "ipopt"):
                 casadi_solver_opts=solver_opts,
             )
 
-        set_initial_guess(horizon, init_x, init_u, solver)
+        set_initial_guess(horizon, solver, init_x, init_u, init_p)
         solver.solve()
         sol_x, sol_u = extract_solution(horizon, state_dim, control_dim, solver)
         del solver
@@ -43,4 +44,4 @@ def solve_ocp(use_acados: bool = True, casadi_solver_str: str = "ipopt"):
 
 
 if __name__ == "__main__":
-    solve_ocp(use_acados=True)
+    solve_ocp(use_acados=True, casadi_solver_str='uno')

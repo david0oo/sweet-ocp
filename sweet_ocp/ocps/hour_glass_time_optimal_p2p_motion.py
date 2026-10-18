@@ -115,7 +115,7 @@ def create_initial_guess(variant = 0):
     else:
         raise ValueError("variant must be 0 or 1")
 
-    return init_X, init_U
+    return init_X, init_U, None
 
 def plot_trajectory(sol_X: np.array, sol_U :np.array):
     params = HourGlassParameters()

@@ -188,7 +188,7 @@ def create_initial_guess(WITH_RECTANGULAR_OBSTACLE=True, variant : int = 0):
                 init_U[i,:] = np.array([0.0, 0.0])
             init_X[params.N,:] = np.array([T0, params.l0, params.x0, params.theta0, params.l_dot0, params.x_dot0, params.theta_dot0])
 
-    return init_X, init_U
+    return init_X, init_U, None
 
 def plot_trajectory(sol_X: np.array, sol_U :np.array, WITH_RECTANGULAR_OBSTACLE=True):
     """

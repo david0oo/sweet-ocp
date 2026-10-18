@@ -159,7 +159,7 @@ def create_initial_guess():
         init_U[i,:] = np.array([0.5*params.c_max])
     init_X[params.N,:] = np.array([params.T0, p_x_init[params.N], p_y_init[params.N], params.initial_state[2], params.initial_state[3]])
 
-    return init_X, init_U
+    return init_X, init_U, None
 
 def plot_trajectory(sol_X, sol_U):
     params = HanggliderProblemParameters()

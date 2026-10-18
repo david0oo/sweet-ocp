@@ -147,7 +147,7 @@ def create_initial_guess():
         init_X[i, :] = params.initial_state
         init_U[i, :] = params.u_init
     init_X[params.N, :] = params.initial_state
-    return init_X, init_U
+    return init_X, init_U, None
 
 def plot_trajectory(sol_X, sol_U):
     params = SimplePendulumParameters()
