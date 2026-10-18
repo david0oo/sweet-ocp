@@ -99,7 +99,7 @@ def create_problem(opts : AcadosOcpOptions):
 
     return ocp
 
-def create_initial_guess(reynolds_numer : float = 10.0):
+def create_initial_guess(variant : int = 1):
     """
     This function creates an initial guess for the flow problem.
     Choose the reynolds_number from [0, 10, 100, 1000]
@@ -109,14 +109,25 @@ def create_initial_guess(reynolds_numer : float = 10.0):
     init_U = np.zeros((params.N, params.nu))
     init_P = np.zeros((params.N+1, 1))
 
+    reynolds_number = 0.0
+    if variant == 0:   
+        reynolds_number = 0.0 
+    elif variant == 1:   
+        reynolds_number = 10.0 
+    elif variant == 2:   
+        reynolds_number = 100.0 
+    elif variant == 3:   
+        reynolds_number = 1000.0
+    # else use default value 0.0        
+
     # Initial guess
     ts = np.linspace(0, params.Tf, params.N+1)
     u_init = ts**2*(3-2*ts)
     for i in range(params.N):
         init_X[i,:] = np.array([u_init[i], 0.0, 0.0, 0.0])
-        init_P[i] = np.array([reynolds_numer])
+        init_P[i] = np.array([reynolds_number])
     init_X[params.N,:] = np.array([u_init[i], 0.0, 0.0, 0.0])
-    init_P[params.N] = np.array([reynolds_numer])
+    init_P[params.N] = np.array([reynolds_number])
     return init_X, init_U, init_P
 
 
