@@ -1,13 +1,21 @@
 # Copyright (c) 2026 David Kiessling
 # Licensed under the BSD-2 license. See LICENSE file in the project directory for details.
 
-from acados_template import AcadosOcp, AcadosOcpSolver, ACADOS_INFTY, AcadosOcpOptions
+from acados_template import (
+    AcadosOcp,
+    AcadosOcpSolver,
+    AcadosSim,
+    AcadosSimSolver,
+    ACADOS_INFTY,
+    AcadosOcpOptions,
+)
 from sweet_ocp.models.bicycle_models import export_free_time_simple_bicycle
 from dataclasses import dataclass
 import numpy as np
 from matplotlib import pyplot as plt
 import casadi as ca
 import os
+import tempfile
 
 # getting the name of the directory
 # where the this file is present.
@@ -98,6 +106,30 @@ def create_problem(opts : AcadosOcpOptions):
     ocp.solver_options.tf = params.Tf
     return ocp
 
+def simulate_initial_guess():
+    params = HourGlassParameters()
+    init_X = np.zeros((params.N+1, params.nx))
+    init_U = np.zeros((params.N, params.nu))
+    init_X[0] = np.array([15.0, -3.0, 0.0, np.pi/2])
+    init_U[:, 1] = 0.7
+
+    sim = AcadosSim()
+    sim.model = export_free_time_simple_bicycle()
+    sim.solver_options.T = params.Tf / params.N
+    sim.solver_options.integrator_type = "ERK"
+    sim.solver_options.num_stages = 4
+    sim.solver_options.num_steps = 1
+
+    with tempfile.TemporaryDirectory(prefix="hour_glass_sim_") as codegen_dir:
+        sim.code_gen_options.code_export_directory = codegen_dir
+        integrator = AcadosSimSolver(sim)
+        for i in range(params.N):
+            init_X[i+1] = integrator.simulate(x=init_X[i], u=init_U[i])
+        del integrator
+
+    return init_X, init_U
+
+
 def create_initial_guess(variant = 0):
     params = HourGlassParameters()
     init_X = np.zeros((params.N+1, params.nx))
@@ -106,14 +138,17 @@ def create_initial_guess(variant = 0):
     if variant == 0:
         arr = np.array([18.0, 0.0, 0.0, 0.0]).reshape(1, params.nx)
         init_X = np.vstack([arr] * (params.N+1))
-        init_U = np.zeros((params.N, params.nu))
+        init_U[:, 1] = 0.01
     elif variant == 1:
-        # Load andx set the initial guess
-        with open(current+'/hour_glass_initial_guess.npy', 'rb') as f:
-            init_X = np.load(f).T
-            init_U = np.load(f).T
+        init_X[:, 0] = 18.0
+        init_X[:, 1] = -3.0
+        init_X[:, 2] = np.linspace(0.0, 10.0, params.N+1)
+        init_X[:, 3] = 0.0
+        init_U[:, 1] = 0.1
+    elif variant == 2:
+        init_X, init_U = simulate_initial_guess()
     else:
-        raise ValueError("variant must be 0 or 1")
+        raise ValueError("variant must be 0, 1, 2")
 
     return init_X, init_U, None
 
